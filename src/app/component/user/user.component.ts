@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {User} from '../../model/user.model';
 import {FormControl, FormGroup} from '@angular/forms';
 import {EventEmitter} from 'events';
@@ -12,11 +12,13 @@ export class UserComponent implements OnInit {
 
   public users: User[] = [];
 
+  @Input()
   userForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl('')
   });
-  onChange = new EventEmitter();
+
+  @Output() onChange = new EventEmitter();
 
   constructor() {
   }
