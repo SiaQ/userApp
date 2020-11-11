@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../model/user.model';
+import {FormControl, FormGroup} from '@angular/forms';
+import {EventEmitter} from 'events';
 
 @Component({
   selector: 'app-user',
@@ -9,6 +11,12 @@ import {User} from '../../model/user.model';
 export class UserComponent implements OnInit {
 
   public users: User[] = [];
+
+  userForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl('')
+  });
+  onChange = new EventEmitter();
 
   constructor() {
   }
@@ -26,5 +34,14 @@ export class UserComponent implements OnInit {
 
     this.users.push(firstUser);
     this.users.push(secondUser);
+  }
+
+  onSubmit(): void {
+    const newUser: User = {
+      firstName: this.userForm.value.firstName,
+      lastName: this.userForm.value.lastName
+    };
+    this.users.push(newUser);
+    this.userForm.reset();
   }
 }

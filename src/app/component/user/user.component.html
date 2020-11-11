@@ -1,4 +1,4 @@
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 18rem">
   <div class="card-header text-center">
     <b>Users</b>
   </div>
@@ -7,4 +7,23 @@
       {{ user.firstName }} {{ user.lastName }}
     </li>
   </ul>
+</div>
+
+<div class="card mt-3" style="width: 18rem">
+  <div class="card-header text-center">
+    <b>Add new user</b>
+  </div>
+  <div>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <label>
+        First Name:
+        <input type="text" formControlName="firstName">
+      </label>
+      <label>
+        Last Name:
+        <input type="text" formControlName="lastName">
+      </label>
+    </form>
+    <button class="submit" (click)="onSubmit()">Submit!</button>
+  </div>
 </div>
